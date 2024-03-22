@@ -1,0 +1,33 @@
+{
+	"name": "js_ecdc_list_json",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_ablob_covidstoragesansource",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "lookup"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "ecdc_file_list (1).json",
+				"container": "configs"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"sourceRelativeURL": {
+					"type": "string"
+				},
+				"sinkFileName": {
+					"type": "string"
+				}
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,52 @@
+{
+	"name": "pl_execute_population_data",
+	"properties": {
+		"activities": [
+			{
+				"name": "Execute_ingest_data",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "pl_ingest_population_data",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "Execute_processed_population_data",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Execute_ingest_data",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "pl_processed_population_data",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			}
+		],
+		"folder": {
+			"name": "Execute"
+		},
+		"annotations": [],
+		"lastPublishTime": "2024-03-22T02:03:15Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
